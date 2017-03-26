@@ -1,6 +1,6 @@
-#include "Stepper.h"
+#include <Stepper.h>
 
-Stepper stepper(11, 13, 200, 240);
+Stepper stepper(11, 13, 8, 200, 240);
 
 void setup() {
   Serial.begin(9600);
@@ -22,6 +22,12 @@ void loop() {
     stepper.step();
     delayMicroseconds(stepper.getDelay());
   }
+
+  stepper.disable();
+
+  delay(2000);
+
+  stepper.enable();
 
   Serial.println(stepper.getDelay());
 }

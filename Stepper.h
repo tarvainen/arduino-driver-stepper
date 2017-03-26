@@ -4,8 +4,9 @@
 class Stepper {
 private:
   int direction;
-  int stepPin;
-  int directionPin;
+  char stepPin;
+  char directionPin;
+  char enablePin;
   long stepsPerRevolution;
   long rpm;
   unsigned long delay;
@@ -13,7 +14,7 @@ private:
   unsigned long calculateDelay();
 
 public:
-  Stepper(char, char, int, int);
+  Stepper(char, char, char, int, int);
 
   void step();
   void step(unsigned long);
@@ -23,6 +24,9 @@ public:
 
   void setSpeed(int);
   unsigned long getDelay();
+
+  void enable();
+  void disable();
 };
 
 

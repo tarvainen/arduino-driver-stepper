@@ -1,9 +1,16 @@
 #include "Arduino.h"
 #include "Stepper.h"
 
-Stepper::Stepper(char directionPin, char stepPin, int stepsPerRevolution, int rpm) {
+Stepper::Stepper(
+  char directionPin,
+  char stepPin,
+  char enablePin,
+  int stepsPerRevolution,
+  int rpm
+) {
   this->stepPin = stepPin;
   this->directionPin = directionPin;
+  this->enablePin = enablePin;
   this->direction = 0;
   this->delay = 1000;
   this->stepsPerRevolution = stepsPerRevolution;
@@ -52,6 +59,13 @@ unsigned long Stepper::getDelay() {
   return this->delay;
 }
 
+void Stepper::enable() {
+  digitalWrite(this->enablePin, 0);
+}
+
+void Stepper::disable() {
+  digitalWrite(this->enablePin, 1);
+}
 ////// PRIVATE METHODS ///////
 
 unsigned long Stepper::calculateDelay() {
